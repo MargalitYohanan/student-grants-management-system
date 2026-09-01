@@ -1,0 +1,123 @@
+.page {
+  padding-top: 48px;
+}
+
+.page--narrow {
+  max-width: 650px;
+  margin: 0 auto;
+  padding: 24px 16px;
+}
+
+.eyebrow {
+  display: block;
+  color: #d4af37; /* זהב */
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  margin-bottom: 6px;
+  text-align: right;
+}
+
+h1 {
+  font-size: 1.85rem;
+  color: #1a202c;
+  margin: 0 0 24px 0;
+  text-align: right;
+}
+
+.card {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  padding: 32px;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+}
+
+.status-card {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+  direction: rtl; 
+}
+
+.stamp {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 16px 24px;
+  border-radius: 6px;
+  border: 2px dashed #cbd5e0;
+  min-width: 140px;
+  text-align: center;
+}
+
+.stamp-title {
+  font-size: 1.2rem;
+  font-weight: 700;
+  margin-bottom: 2px;
+}
+
+.stamp-sub {
+  font-size: 0.75rem;
+  font-weight: 600;
+  opacity: 0.8;
+}
+
+.stamp--pending {
+  border-color: #d4af37; 
+  color: #b7941f;
+  background-color: #fffdf5;
+}
+
+.stamp--approved {
+  border-color: #38a169; 
+  color: #276749;
+  background-color: #f0fff4;
+}
+
+.stamp--rejected {
+  border-color: #e53e3e; 
+  color: #9b2c2c;
+  background-color: #fff5f5;
+}
+
+.status-details {
+  flex: 1;
+  text-align: right;
+}
+
+.status-details p {
+  margin: 0 0 8px 0;
+  font-size: 1rem;
+  color: #2d3748;
+}
+
+.status-description {
+  color: #4a5568 !important;
+  font-size: 0.95rem !important;
+  line-height: 1.5;
+}
+
+.loading-state {
+  text-align: center;
+  color: #718096;
+  padding: 48px;
+}
+
+@media (max-width: 560px) {
+  .status-card {
+    flex-direction: column;
+    text-align: center;
+    gap: 20px;
+  }
+  
+  .status-details {
+    text-align: center;
+  }
+  
+  .stamp {
+    width: 100%;
+    box-sizing: border-box;
+  }
+}

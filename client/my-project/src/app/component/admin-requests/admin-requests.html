@@ -1,0 +1,92 @@
+<div class="page">
+  <span class="eyebrow">ניהול בקשות</span>
+  <h1>בקשות מלגה פתוחות</h1>
+  <p>הרשימה מציגה בקשות שטרם אושרו סופית. ניתן לסנן לפי הפרמטרים הבאים ולעבור לפרטי בקשה מלאים.</p>
+
+  <!-- כרטיסיית החיפוש והסינון -->
+  <div class="card card--tab filter-card">
+    <h3 class="filter-title">חיפוש וסינון</h3>
+    <form [formGroup]="filterForm" (ngSubmit)="search()">
+      <div class="filter-grid">
+        <div class="field">
+          <label for="fUserId">תעודת זהות סטודנט</label>
+          <input id="fUserId" type="text" formControlName="userId" />
+        </div>
+        <div class="field">
+          <label for="fCity">עיר מגורים</label>
+          <input id="fCity" type="text" formControlName="city" />
+        </div>
+        <div class="field">
+          <label for="fMinTuition">שכר לימוד מ-</label>
+          <input id="fMinTuition" type="number" min="0" formControlName="minTuition" />
+        </div>
+        <div class="field">
+          <label for="fMaxTuition">שכר לימוד עד</label>
+          <input id="fMaxTuition" type="number" min="0" formControlName="maxTuition" />
+        </div>
+        <div class="field">
+          <label for="fMinSiblings">אחים מתחת ל-18 מ-</label>
+          <input id="fMinSiblings" type="number" min="0" formControlName="minSiblings" />
+        </div>
+        <div class="field">
+          <label for="fMaxSiblings">אחים מתחת ל-18 עד</label>
+          <input id="fMaxSiblings" type="number" min="0" formControlName="maxSiblings" />
+        </div>
+        <div class="field">
+          <label for="fFromDate">הוגשה מתאריך</label>
+          <input id="fFromDate" type="date" formControlName="fromDate" />
+        </div>
+        <div class="field">
+          <label for="fToDate">הוגשה עד תאריך</label>
+          <input id="fToDate" type="date" formControlName="toDate" />
+        </div>
+      </div>
+      
+      <!-- כפתורי הפעולה של הטופס -->
+      <div class="filter-actions">
+        <button type="submit" class="btn btn-gold">חיפוש</button>
+        <button type="button" class="btn btn-outline" (click)="resetFilters()">איפוס</button>
+      </div>
+    </form>
+  </div>
+
+  <!-- הצגת רשימת התוצאות או הודעה שאין נתונים -->
+  @if (requests.length === 0) {
+    <div class="card empty-state">
+      <h3>אין בקשות התואמות את החיפוש</h3>
+      <p>נסו לשנות את פרמטרי הסינון או לבצע איפוס קריטריונים.</p>
+    </div>
+  } @else {
+    <div class="card results-card">
+      <table class="results-table">
+        <thead>
+          <tr>
+            <th>ת"ז סטודנט</th>
+            <th>שם מלא</th>
+            <th>תחום לימוד</th>
+            <th>סטטוס</th>
+            <th>פעולות</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- לולאה פשוטה שרצה על המערך הרגיל ומציגה שורה לכל בקשה -->
+          @for (req of requests; track req.requestId) {
+            <tr>
+              <td>{{ req.userId }}</td>
+              <td>{{ req.firstName }} {{ req.lastName }}</td>
+              <td>{{ req.major }}</td>
+              <!-- קריאה דינמית לפונקציית העיצוב של הסטטוס -->
+              <td>
+                <span [class]="badgeClass(req.status)">{{ req.status }}</span>
+              </td>
+              <td>
+                <!-- מעבר לעמוד פירוט בקשה ספציפית לפי המזהה שלה -->
+                <a [routerLink]="['/admin/requests', req.requestId]" class="btn btn-outline btn-sm">פרטי בקשה</a>
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  }
+</div>

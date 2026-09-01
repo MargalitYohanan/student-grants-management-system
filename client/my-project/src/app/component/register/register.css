@@ -1,0 +1,117 @@
+/* מרווח עליון לעמוד הכללי */
+.page {
+  padding-top: 64px;
+}
+
+/* הגבלת רוחב ממוקדת למסכי כניסה והרשמה */
+.page--narrow {
+  max-width: 420px;
+  margin: 0 auto;
+  padding: 24px 16px;
+}
+
+/* עיצוב כרטיס הטופס */
+.card {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  padding: 32px;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+}
+
+/* טקסט קטן מעל הכותרת */
+.eyebrow {
+  display: block;
+  color: #d4af37; /* זהב */
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 8px;
+}
+
+h1 {
+  font-size: 1.75rem;
+  color: #1a202c;
+  margin: 0 0 8px 0;
+}
+
+p {
+  color: #718096;
+  font-size: 0.95rem;
+  margin: 0 0 24px 0;
+}
+
+/* מבנה של שדה יחיד */
+.field {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 16px;
+  flex: 1; /* מאפשר תמיכה בחלוקה שווה בתוך שורה */
+}
+
+/* שורה המכילה שני שדות (שם פרטי ומשפחה) */
+.field-row {
+  display: flex;
+  gap: 16px;
+}
+
+label {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #4a5568;
+  margin-bottom: 6px;
+  text-align: right;
+}
+
+input {
+  padding: 10px 14px;
+  border: 1px solid #cbd5e0;
+  border-radius: 6px;
+  font-size: 0.95rem;
+  background-color: #fff;
+  color: #2d3748;
+  transition: border-color 0.2s ease;
+  outline: none;
+  text-align: right; /* תמיכה בכתיבה מימין לשמאל */
+}
+
+input:focus {
+  border-color: #d4af37; /* צבע זהב בפוקוס */
+}
+
+/* הודעת שגיאה מתחת לשדה */
+.error {
+  color: #e53e3e;
+  font-size: 0.8rem;
+  margin-top: 4px;
+  text-align: right;
+}
+
+/* עיצוב כפתור ההרשמה */
+.btn-primary {
+  background-color: #111111;
+  color: #ffffff;
+  border: 1px solid #111111;
+  padding: 12px;
+  font-size: 1rem;
+  font-weight: 600;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.btn-primary:hover {
+  background-color: #2d3748;
+  border-color: #2d3748;
+}
+
+a {
+  color: #d4af37;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+a:hover {
+  text-decoration: underline;
+}

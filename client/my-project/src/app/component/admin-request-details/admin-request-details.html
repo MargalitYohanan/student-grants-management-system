@@ -1,0 +1,121 @@
+<div class="page">
+  <a routerLink="/admin/requests" class="back-link">→ חזרה לרשימת הבקשות</a>
+
+  <!-- שימוש במשתנה הטעינה הבוליאני החדש -->
+  @if (isLoading || !request) {
+  <p>טוען פרטי בקשה...</p>
+  } @else {
+
+  <!-- כותרת העמוד ופרטי הסטודנט הבסיסיים -->
+  <div class="detail-header">
+    <div>
+      <span class="eyebrow">פרטי בקשה</span>
+
+      <!-- הגנה: רינדור השם יתבצע רק אם userRef הוא אובייקט ולא מחרוזת מזהה פשוטה -->
+      @if (isUserRefObject) {
+      <h1>{{ request.userRef?.firstName }} {{ request.userRef?.lastName }}</h1>
+      <p>ת"ז: {{ request.userRef?.userId }}</p>
+      } @else {
+      <h1>פרטי מבקש המענק</h1>
+      <p>מזהה משתמש: {{ request.userRef }}</p>
+      }
+    </div>
+    <span [class]="badgeClass(request.status)">{{ request.status }}</span>
+  </div>
+
+  <!-- כרטיסיית קבלת החלטה: תופיע רק אם הבקשה במצב המתנה -->
+  @if (request.status === 'בהמתנה') {
+  <div class="card card--tab decision-card">
+    <h3>החלטת הוועדה</h3>
+    <p>לאחר אישור או דחייה, לא ניתן יהיה לשנות את הסטטוס.</p>
+    <div class="decision-actions">
+      <button class="btn btn-approve" (click)="decide('אושר')">אישור הבקשה</button>
+      <button class="btn btn-reject" (click)="decide('נדחה')">דחיית הבקשה</button>
+    </div>
+  </div>
+  }
+
+  <!-- גריד כרטיסיות המידע המלא של הטופס -->
+  <div class="detail-grid">
+
+    <!-- כרטיסיית פרטים אישיים -->
+    <div class="card card--tab">
+      <h3>פרטים אישיים</h3>
+      <dl>
+        <dt>עיר מגורים</dt>
+        <dd>{{ request.personalDetails?.city }}</dd>
+        <dt>כתובת</dt>
+        <dd>{{ request.personalDetails?.address }}</dd>
+        <dt>תאריך לידה</dt>
+        <dd>{{ request.personalDetails?.birthDate }}</dd>
+        <dt>טלפון נייד</dt>
+        <dd>{{ request.personalDetails?.mobilePhone }}</dd>
+        @if (request.personalDetails?.homePhone) {
+        <dt>טלפון בית</dt>
+        <dd>{{ request.personalDetails?.homePhone }}</dd>
+        }
+      </dl>
+    </div>
+
+    <!-- כרטיסיית פרטי משפחה -->
+    <div class="card card--tab">
+      <h3>פרטי משפחה</h3>
+      <dl>
+        <dt>אב</dt>
+        <dd>
+          @if (request.familyDetails?.father) {
+          {{ request.familyDetails.father?.firstName }} {{ request.familyDetails.father?.lastName }} (ת"ז {{
+          request.familyDetails.father?.id }})
+          } @else {
+          לא צוין
+          }
+        </dd>
+        <dt>אם</dt>
+        <dd>
+          @if (request.familyDetails?.mother) {
+          {{ request.familyDetails.mother?.firstName }} {{ request.familyDetails.mother?.lastName }} (ת"ז {{
+          request.familyDetails.mother?.id }})
+          } @else {
+          לא צוין
+          }
+        </dd>
+        <dt>אחים מתחת לגיל 18</dt>
+        <dd>{{ request.familyDetails?.siblingsUnder18 }}</dd>
+        <dt>אחים מעל 21 עם יותר מילד</dt>
+        <dd>{{ request.familyDetails?.siblingsOver21WithMoreThanOneChild }}</dd>
+      </dl>
+    </div>
+
+    <!-- כרטיסיית פרטי לימודים -->
+    <div class="card card--tab">
+      <h3>פרטי לימודים</h3>
+      <dl>
+        <dt>תחום לימוד</dt>
+        <dd>{{ request.studyDetails?.major }}</dd>
+        <dt>מוסד לימודי</dt>
+        <dd>{{ request.studyDetails?.schoolName }}</dd>
+        <dt>שנת לימודים</dt>
+        <dd>{{ request.studyDetails?.yearsOfStudy }}</dd>
+        <dt>שכר לימוד שנתי</dt>
+        <dd>{{ request.studyDetails?.annualTuition }} ₪</dd>
+      </dl>
+    </div>
+
+    <!-- כרטיסיית פרטי בנק -->
+    <div class="card card--tab">
+      <h3>פרטי חשבון בנק</h3>
+      <dl>
+        <dt>בעל החשבון (ת"ז)</dt>
+        <dd>{{ request.bankDetails?.ownerId }}</dd>
+        <dt>בנק</dt>
+        <dd>{{ request.bankDetails?.bankName }}</dd>
+        <dt>סניף</dt>
+        <dd>{{ request.bankDetails?.branchNumber }}</dd>
+        <dt>מספר חשבון</dt>
+        <dd>{{ request.bankDetails?.accountNumber }}</dd>
+      </dl>
+    </div>
+
+  </div>
+  }
+</div>

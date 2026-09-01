@@ -1,0 +1,72 @@
+.page {
+  padding-top: 48px;
+  max-width: 1080px;
+}
+
+.filter-card {
+  margin: 24px 0 28px;
+}
+
+.filter-title {
+  margin-bottom: 16px;
+}
+
+.filter-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px 18px;
+}
+
+@media (max-width: 900px) {
+  .filter-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 560px) {
+  .filter-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.filter-actions {
+  display: flex;
+  gap: 12px;
+  margin-top: 8px;
+}
+
+.results-card {
+  padding: 0;
+  overflow-x: auto;
+}
+
+.results-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.results-table th {
+  text-align: right;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 0.85rem;
+  color: var(--color-ink-soft);
+  padding: 14px 20px;
+  border-bottom: 2px solid var(--color-border);
+  background: var(--color-paper);
+}
+
+.results-table td {
+  padding: 14px 20px;
+  border-bottom: 1px solid var(--color-border);
+  font-size: 0.94rem;
+}
+
+.results-table tr:last-child td {
+  border-bottom: none;
+}
+
+.btn-sm {
+  padding: 7px 14px;
+  font-size: 0.84rem;
+}

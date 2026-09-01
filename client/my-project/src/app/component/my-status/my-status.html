@@ -1,0 +1,41 @@
+<div class="page page--narrow">
+  <span class="eyebrow">מעקב בקשה</span>
+  <h1>סטטוס הבקשה שלי</h1>
+
+  @if (!status()) {
+    <div class="card card--tab loading-state">
+      <p>טוען נתונים מהשרת, אנא המתינו...</p>
+    </div>
+  } 
+  
+  @else {
+    <div class="card card--tab status-card">
+      
+      <div class="stamp" [class.stamp--pending]="status()?.status === 'בהמתנה'"
+                           [class.stamp--approved]="status()?.status === 'אושר'"
+                           [class.stamp--rejected]="status()?.status === 'נדחה'">
+        <span class="stamp-title">{{ status()?.status }}</span>
+        
+        <span class="stamp-sub">
+          @if (status()?.status === 'בהמתנה') { בבדיקת הוועדה }
+          @else if (status()?.status === 'אושר') { מלגה הוענקה }
+          @else { הבקשה לא אושרה }
+        </span>
+      </div>
+
+      <div class="status-details">
+        <p><strong>מספר בקשה:</strong> {{ status()?.requestId }}</p>
+        <p class="status-description">
+          @if (status()?.status === 'בהמתנה') {
+            הבקשה שלכם התקבלה ונמצאת בבדיקת הוועדה. נעדכן אתכם ברגע שיתקבל סטטוס סופי.
+          } @else if (status()?.status === 'אושר') {
+            מזל טוב! בקשת המלגה שלכם אושרה על ידי הוועדה.
+          } @else {
+            לצערנו הבקשה שלכם נדחתה על ידי הוועדה בשלב זה.
+          }
+        </p>
+      </div>
+
+    </div>
+  }
+</div>

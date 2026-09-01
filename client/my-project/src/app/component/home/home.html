@@ -1,0 +1,22 @@
+<div class="page">
+  <span class="eyebrow">ברוכים הבאים</span>
+  <h1>שלום, {{ currentUser()?.firstName }}</h1>
+  <p>קרן המלגות מלווה סטודנטים לאורך כל תהליך בקשת המענק - מהגשה ועד קבלת החלטה.</p>
+
+  <div class="dashboard-grid">
+    <a routerLink="/request/new" class="card card--tab dashboard-card">
+      <span class="eyebrow">שלב 1</span>
+      <h3>הגשת בקשת מלגה</h3>
+      <p>מילוי טופס פרטים אישיים, משפחתיים, לימודים ובנק לצורך הגשת בקשה חדשה.</p>
+      <span class="dashboard-card-cta">למעבר לטופס ←</span>
+    </a>
+
+    <a routerLink="/request/status" class="card card--tab dashboard-card">
+      <span class="eyebrow">שלב 2</span>
+      <h3>מעקב אחר סטטוס</h3>
+      <p>בדקו האם הבקשה האחרונה שהגשתם עדיין ממתינה, אושרה או נדחתה.</p>
+      <span class="dashboard-card-cta">לצפייה בסטטוס ←</span>
+    </a>
+  </div>
+</div>
+

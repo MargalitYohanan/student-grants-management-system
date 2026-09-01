@@ -1,0 +1,35 @@
+<header class="nav">
+  <div class="nav-inner">
+    <a routerLink="/home" class="nav-brand">
+      <span class="nav-brand-mark">מ</span>
+      <span class="nav-brand-text">
+        <strong>קרן המלגות</strong>
+        <small>מערכת בקשות ומענקים</small>
+      </span>
+    </a>
+
+    @if (isLoggedIn()) {
+      <nav class="nav-links">
+        @if (!isAdmin()) {
+          <a routerLink="/request/new" routerLinkActive="active">הגשת בקשה</a>
+          <a routerLink="/request/status" routerLinkActive="active">סטטוס הבקשה שלי</a>
+        } @else {
+          <a routerLink="/admin/requests" routerLinkActive="active">בקשות פתוחות</a>
+        }
+      </nav>
+
+      <div class="nav-user">
+        <span class="nav-user-name">
+          {{ currentUser()?.firstName }} {{ currentUser()?.lastName }}
+          <em>{{ isAdmin() ? 'מנהל' : 'סטודנט' }}</em>
+        </span>
+        <button class="btn btn-outline nav-logout" (click)="logout()">התנתקות</button>
+      </div>
+    } @else {
+      <nav class="nav-links">
+        <a routerLink="/login" routerLinkActive="active">התחברות</a>
+        <a routerLink="/register" routerLinkActive="active">הרשמה</a>
+      </nav>
+    }
+  </div>
+</header>

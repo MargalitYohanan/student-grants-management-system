@@ -1,0 +1,56 @@
+<div class="page page--narrow">
+  <div class="card card--tab">
+    <span class="eyebrow">הרשמה</span>
+    <h1>יצירת חשבון סטודנט</h1>
+    <p>לאחר ההרשמה תוכלו להתחבר ולהגיש בקשת מלגה.</p>
+
+    <!-- הטופס מקושר לאובייקט form שהגדרנו ב-TS ומפעיל את submit() בשליחה -->
+    <form [formGroup]="form" (ngSubmit)="submit()">
+      
+      <!-- שדה תעודת זהות -->
+      <div class="field">
+        <label for="userId">תעודת זהות</label>
+        <input id="userId" type="text" formControlName="userId" />
+        @if (form.controls.userId.invalid && form.controls.userId.touched) {
+          <div class="error">יש להזין תעודת זהות</div>
+        }
+      </div>
+
+      <!-- שורת שמות: שם פרטי ושם משפחה זה לצד זה -->
+      <div class="field-row">
+        <div class="field">
+          <label for="firstName">שם פרטי</label>
+          <input id="firstName" type="text" formControlName="firstName" />
+          @if (form.controls.firstName.invalid && form.controls.firstName.touched) {
+            <div class="error">שם פרטי הוא שדה חובה</div>
+          }
+        </div>
+        <div class="field">
+          <label for="lastName">שם משפחה</label>
+          <input id="lastName" type="text" formControlName="lastName" />
+          @if (form.controls.lastName.invalid && form.controls.lastName.touched) {
+            <div class="error">שם משפחה הוא שדה חובה</div>
+          }
+        </div>
+      </div>
+
+      <!-- שדה סיסמה (ללא אימות סיסמה נוסף) -->
+      <div class="field">
+        <label for="password">סיסמה</label>
+        <input id="password" type="password" formControlName="password" />
+        @if (form.controls.password.invalid && form.controls.password.touched) {
+          <div class="error">יש להזין סיסמה</div>
+        }
+      </div>
+
+      <!-- כפתור הרשמה פשוט -->
+      <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 12px;">
+        הרשמה
+      </button>
+    </form>
+
+    <p style="margin-top: 18px; text-align: center; font-size: 0.9rem;">
+      כבר יש לכם חשבון? <a routerLink="/login">התחברות</a>
+    </p>
+  </div>
+</div>

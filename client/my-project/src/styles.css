@@ -1,0 +1,320 @@
+/* ===== מערכת עיצוב - קרן המלגות =====
+   השראה: מסמך רשמי / תעודת הענקה - טפסים מוגשים, נבדקים, ומקבלים "חותמת" אישור.
+*/
+
+:root {
+  /* צבעים */
+  --color-ink: #17233d;
+  --color-ink-2: #24365c;
+  --color-ink-soft: #5b6b84;
+  --color-paper: #eef1f6;
+  --color-card: #ffffff;
+  --color-border: #d9dee8;
+  --color-gold: #b8842a;
+  --color-gold-light: #e4b85a;
+  --color-gold-bg: #fbf1dd;
+  --color-approved: #2f6b4f;
+  --color-approved-bg: #e7f2ec;
+  --color-rejected: #a13d2b;
+  --color-rejected-bg: #fbe9e5;
+  --color-pending: #8a6d1f;
+  --color-pending-bg: #fbf1dd;
+
+  /* טיפוגרפיה */
+  --font-display: 'Frank Ruhl Libre', 'Times New Roman', serif;
+  --font-body: 'Assistant', 'Segoe UI', sans-serif;
+
+  /* מידות */
+  --radius-s: 6px;
+  --radius-m: 10px;
+  --shadow-card: 0 1px 3px rgba(23, 35, 61, 0.08), 0 6px 18px rgba(23, 35, 61, 0.06);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
+  margin: 0;
+}
+
+body {
+  font-family: var(--font-body);
+  background: var(--color-paper);
+  background-image:
+    linear-gradient(180deg, rgba(23,35,61,0.02) 0%, rgba(23,35,61,0) 220px);
+  color: var(--color-ink);
+  direction: rtl;
+  text-align: right;
+  -webkit-font-smoothing: antialiased;
+  line-height: 1.5;
+}
+
+h1, h2, h3, h4 {
+  font-family: var(--font-display);
+  color: var(--color-ink);
+  margin: 0 0 0.5em;
+  font-weight: 700;
+}
+
+p {
+  margin: 0 0 1em;
+}
+
+a {
+  color: var(--color-ink-2);
+}
+
+button {
+  font-family: var(--font-body);
+}
+
+/* ===== רכיבי עזר משותפים ===== */
+
+.page {
+  max-width: 980px;
+  margin: 0 auto;
+  padding: 32px 24px 64px;
+}
+
+.page--narrow {
+  max-width: 560px;
+}
+
+.card {
+  background: var(--color-card);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-m);
+  box-shadow: var(--shadow-card);
+  padding: 28px;
+}
+
+.card--tab {
+  position: relative;
+  border-inline-start: 4px solid var(--color-gold);
+}
+
+.eyebrow {
+  font-family: var(--font-body);
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  font-size: 0.75rem;
+  color: var(--color-gold);
+  text-transform: uppercase;
+  margin-bottom: 8px;
+  display: block;
+}
+
+.field {
+  margin-bottom: 18px;
+}
+
+.field label {
+  display: block;
+  font-weight: 600;
+  font-size: 0.92rem;
+  color: var(--color-ink-2);
+  margin-bottom: 6px;
+}
+
+.field input,
+.field select,
+.field textarea {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-s);
+  font-size: 0.98rem;
+  font-family: var(--font-body);
+  background: var(--color-card);
+  color: var(--color-ink);
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.field input:focus,
+.field select:focus,
+.field textarea:focus {
+  outline: none;
+  border-color: var(--color-gold);
+  box-shadow: 0 0 0 3px var(--color-gold-bg);
+}
+
+.field .error {
+  color: var(--color-rejected);
+  font-size: 0.85rem;
+  margin-top: 4px;
+}
+
+.field-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+@media (max-width: 640px) {
+  .field-row {
+    grid-template-columns: 1fr;
+  }
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 11px 22px;
+  border-radius: var(--radius-s);
+  border: 1px solid transparent;
+  font-weight: 600;
+  font-size: 0.96rem;
+  cursor: pointer;
+  transition: transform 0.1s ease, box-shadow 0.15s ease, background 0.15s ease;
+}
+
+.btn:active {
+  transform: translateY(1px);
+}
+
+.btn-primary {
+  background: var(--color-ink);
+  color: #fff;
+}
+
+.btn-primary:hover {
+  background: var(--color-ink-2);
+}
+
+.btn-gold {
+  background: var(--color-gold);
+  color: #fff;
+}
+
+.btn-gold:hover {
+  background: #a3781f;
+}
+
+.btn-outline {
+  background: transparent;
+  border-color: var(--color-border);
+  color: var(--color-ink);
+}
+
+.btn-outline:hover {
+  border-color: var(--color-ink);
+}
+
+.btn-approve {
+  background: var(--color-approved);
+  color: #fff;
+}
+
+.btn-approve:hover {
+  background: #245740;
+}
+
+.btn-reject {
+  background: var(--color-rejected);
+  color: #fff;
+}
+
+.btn-reject:hover {
+  background: #832f21;
+}
+
+.btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.alert {
+  padding: 12px 16px;
+  border-radius: var(--radius-s);
+  font-size: 0.92rem;
+  margin-bottom: 16px;
+}
+
+.alert-error {
+  background: var(--color-rejected-bg);
+  color: var(--color-rejected);
+  border: 1px solid rgba(161, 61, 43, 0.25);
+}
+
+.alert-success {
+  background: var(--color-approved-bg);
+  color: var(--color-approved);
+  border: 1px solid rgba(47, 107, 79, 0.25);
+}
+
+/* ===== חותמת סטטוס - האלמנט החתום של המערכת ===== */
+
+.stamp {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 128px;
+  height: 128px;
+  border-radius: 50%;
+  border: 3px double currentColor;
+  transform: rotate(-8deg);
+  font-family: var(--font-display);
+  font-weight: 900;
+  text-align: center;
+  padding: 10px;
+  gap: 2px;
+}
+
+.stamp .stamp-title {
+  font-size: 1.05rem;
+  line-height: 1.15;
+}
+
+.stamp .stamp-sub {
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: 0.62rem;
+  letter-spacing: 0.08em;
+}
+
+.stamp--pending {
+  color: var(--color-pending);
+}
+
+.stamp--approved {
+  color: var(--color-approved);
+}
+
+.stamp--rejected {
+  color: var(--color-rejected);
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 12px;
+  border-radius: 999px;
+  font-size: 0.8rem;
+  font-weight: 700;
+}
+
+.badge--pending {
+  background: var(--color-pending-bg);
+  color: var(--color-pending);
+}
+
+.badge--approved {
+  background: var(--color-approved-bg);
+  color: var(--color-approved);
+}
+
+.badge--rejected {
+  background: var(--color-rejected-bg);
+  color: var(--color-rejected);
+}
+
+.empty-state {
+  text-align: center;
+  padding: 48px 24px;
+  color: var(--color-ink-soft);
+}

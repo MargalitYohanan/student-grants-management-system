@@ -1,0 +1,144 @@
+<div class="page">
+  <span class="eyebrow">טופס הגשה</span>
+  <h1>בקשת מלגה חדשה</h1>
+  <p>מלאו את כל הפרטים בקפידה. לאחר ההגשה הבקשה תעבור לסטטוס "בהמתנה" לבדיקת הוועדה.</p>
+
+  <form [formGroup]="form" (ngSubmit)="submit()">
+
+    <!-- פרטים אישיים -->
+    <div class="card card--tab section">
+      <h3>פרטים אישיים</h3>
+      <div class="field-row" formGroupName="personalDetails">
+        <div class="field">
+          <label for="birthDate">תאריך לידה</label>
+          <input id="birthDate" type="date" formControlName="birthDate" />
+        </div>
+        <div class="field">
+          <label for="city">עיר מגורים</label>
+          <input id="city" type="text" formControlName="city" />
+        </div>
+        <div class="field">
+          <label for="address">כתובת</label>
+          <input id="address" type="text" formControlName="address" />
+        </div>
+        <div class="field">
+          <label for="mobilePhone">טלפון נייד</label>
+          <input id="mobilePhone" type="tel" formControlName="mobilePhone" />
+        </div>
+        <div class="field">
+          <label for="homePhone">טלפון בית (אופציונלי)</label>
+          <input id="homePhone" type="tel" formControlName="homePhone" />
+        </div>
+      </div>
+    </div>
+
+    <!-- פרטי משפחה -->
+    <div class="card card--tab section" formGroupName="familyDetails">
+      <h3>פרטי משפחה</h3>
+
+      <h4 class="subheading">פרטי האב</h4>
+      <div class="field-row" formGroupName="father">
+        <div class="field">
+          <label for="fatherId">ת"ז אב</label>
+          <input id="fatherId" type="text" formControlName="id" />
+        </div>
+        <div class="field">
+          <label for="fatherFirstName">שם פרטי</label>
+          <input id="fatherFirstName" type="text" formControlName="firstName" />
+        </div>
+        <div class="field">
+          <label for="fatherLastName">שם משפחה</label>
+          <input id="fatherLastName" type="text" formControlName="lastName" />
+        </div>
+      </div>
+
+      <h4 class="subheading">פרטי האם</h4>
+      <div class="field-row" formGroupName="mother">
+        <div class="field">
+          <label for="motherId">ת"ז אם</label>
+          <input id="motherId" type="text" formControlName="id" />
+        </div>
+        <div class="field">
+          <label for="motherFirstName">שם פרטי</label>
+          <input id="motherFirstName" type="text" formControlName="firstName" />
+        </div>
+        <div class="field">
+          <label for="motherLastName">שם משפחה</label>
+          <input id="motherLastName" type="text" formControlName="lastName" />
+        </div>
+      </div>
+
+      <div class="field-row">
+        <div class="field">
+          <label for="siblingsUnder18">מספר אחים מתחת לגיל 18</label>
+          <input id="siblingsUnder18" type="number" min="0" formControlName="siblingsUnder18" />
+        </div>
+        <div class="field">
+          <label for="siblingsOver21">אחים מעל גיל 21 עם יותר מילד אחד</label>
+          <input id="siblingsOver21" type="number" min="0" formControlName="siblingsOver21WithMoreThanOneChild" />
+        </div>
+      </div>
+    </div>
+
+    <!-- פרטי לימודים -->
+    <div class="card card--tab section">
+      <h3>פרטי לימודים</h3>
+      <div class="field-row" formGroupName="studyDetails">
+        <div class="field">
+          <label for="major">תחום לימוד</label>
+          <select id="major" formControlName="major">
+            <option value="" disabled>בחרו תחום</option>
+            @for (major of majors; track major) {
+              <option [value]="major">{{ major }}</option>
+            }
+          </select>
+        </div>
+        <div class="field">
+          <label for="schoolName">שם המוסד הלימודי</label>
+          <input id="schoolName" type="text" formControlName="schoolName" />
+        </div>
+        <div class="field">
+          <label for="yearsOfStudy">שנת לימודים</label>
+          <input id="yearsOfStudy" type="number" min="1" formControlName="yearsOfStudy" />
+        </div>
+        <div class="field">
+          <label for="annualTuition">שכר לימוד שנתי (₪)</label>
+          <input id="annualTuition" type="number" min="0" formControlName="annualTuition" />
+        </div>
+      </div>
+    </div>
+
+    <!-- פרטי בנק -->
+    <div class="card card--tab section">
+      <h3>פרטי חשבון בנק</h3>
+      <div class="field-row" formGroupName="bankDetails">
+        <div class="field">
+          <label for="ownerId">ת"ז בעל החשבון</label>
+          <input id="ownerId" type="text" formControlName="ownerId" />
+        </div>
+        <div class="field">
+          <label for="bankName">בנק</label>
+          <select id="bankName" formControlName="bankName">
+            <option value="" disabled>בחרו בנק</option>
+            @for (bank of banks; track bank) {
+              <option [value]="bank">{{ bank }}</option>
+            }
+          </select>
+        </div>
+        <div class="field">
+          <label for="branchNumber">מספר סניף</label>
+          <input id="branchNumber" type="text" formControlName="branchNumber" />
+        </div>
+        <div class="field">
+          <label for="accountNumber">מספר חשבון</label>
+          <input id="accountNumber" type="text" formControlName="accountNumber" />
+        </div>
+      </div>
+    </div>
+
+    <!-- כפתור הגשה נקי ופשוט -->
+    <button type="submit" class="btn btn-gold" style="width: 100%;">
+      הגשת הבקשה
+    </button>
+  </form>
+</div>

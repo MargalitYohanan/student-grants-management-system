@@ -1,0 +1,35 @@
+<div class="page page--narrow">
+  <div class="card card--tab">
+    <span class="eyebrow">כניסה למערכת</span>
+    <h1>ברוכים השבים</h1>
+    <p>התחברו כדי להגיש בקשת מלגה או לנהל בקשות קיימות.</p>
+
+    <!-- קישור הטופס לאובייקט form והפעלת submit() בעת שליחה -->
+    <form [formGroup]="form" (ngSubmit)="submit()">
+      
+      <div class="field">
+        <label for="userId">תעודת זהות</label>
+        <input id="userId" type="text" formControlName="userId" placeholder="לדוגמה: 123456789" />
+        @if (form.controls.userId.invalid && form.controls.userId.touched) {
+          <div class="error">יש להזין תעודת זהות</div>
+        }
+      </div>
+
+      <div class="field">
+        <label for="password">סיסמה</label>
+        <input id="password" type="password" formControlName="password" placeholder="••••••••" />
+        @if (form.controls.password.invalid && form.controls.password.touched) {
+          <div class="error">יש להזין סיסמה</div>
+        }
+      </div>
+
+      <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 12px;">
+        התחברות
+      </button>
+    </form>
+
+    <p style="margin-top: 18px; text-align: center; font-size: 0.9rem;">
+      עדיין אין לכם חשבון? <a routerLink="/register">הרשמה כסטודנט</a>
+    </p>
+  </div>
+</div>
